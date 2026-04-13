@@ -1,0 +1,46 @@
+body {
+    overflow: hidden;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    width: 50%;
+    height: auto;
+}
+
+.grid div {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 20%;
+}
+
+.grid div:nth-child(3n) {
+    border-right: none;
+    /* removes right border on every 3rd cell (last column) */
+}
+
+.grid div:nth-child(n+7) {
+    border-bottom: none;
+    /* removes bottom border on last 3 cells (last row) */
+}
+
+#reset {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+#game_info {
+    height: 30px;
+}

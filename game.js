@@ -15,6 +15,10 @@ class player {
         // Search registry for player with matching num
         return player.players.find(p => p.num === num).name;
     }
+
+    static clear_registry() {
+        player.players.length = 0;
+    }
 }
 
 function create_grid() {
@@ -47,33 +51,35 @@ function create_grid() {
                     }
                     turns++;
                     if (turns >= 5) {
-                        this.check_grid()
+                        this.check_grid(pos)
                     }
+                    if (turns >= 9 && !won) {
+                        won = "tie";
+                    }
+                    return true;
                 }
             }
+            return false;
         },
-        get_turn(){
-            if(turns%2==0) {
-                return 2;
-            }
-            else {
-                return 1;
-            }
+        get_turn() {
+            return (turns % 2 === 0) ? 1 : -1;
         },
-        check_grid() {
-            for (let x = 0; x < totals.length; x++) {
-                if (totals[x] === 3) {
-                    console.log(`Player ${player.num_to_name(1)} wins!`);
+        check_grid(pos) {
+            for (const x of pos_to_line_match[pos]) {
+                if (totals[x] == 3 || totals[x] == -3) {
                     won = true;
-                }
-                if (totals[x] === -3) {
-                    console.log(`Player ${player.num_to_name(-1)} wins!`);
-                    won = true;
+                    break;
                 }
             }
         },
         game_won() {
             return won;
+        },
+        reset() {
+            grid.fill(0);
+            totals.fill(0);
+            turns = 0;
+            won = false;
         }
     }
 }
