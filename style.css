@@ -1,27 +1,53 @@
 body {
     overflow: hidden;
+    margin: 0;
+    color: #ff9400;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     flex-direction: column;
+    min-height: 100vh;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+#game_info {
+    padding-top: 10px;
+    min-height: 2em;
+    color: #ffc37b;
+    font-size: 1rem;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: auto auto auto;
-    text-align: center;
-    width: 50%;
-    height: auto;
+    grid-template-columns: repeat(3, 10fr);
+    width: min(90vw, 1000px);
+    background: #f6f8ff;
+    border: 4px solid #ff9400;
+    border-radius: 24px;
+    box-shadow: 0px 0px 40px rgba(255, 140, 0, 0.486);
+    overflow: hidden;
+    font-weight: 1000;
 }
 
 .grid div {
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.5em;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    background: rgba(255, 255, 255, 0.92);
+    border-right: 1px solid rgba(17, 34, 93, 0.2);
+    border-bottom: 1px solid rgba(17, 34, 93, 0.2);
 }
 
 .grid div:nth-child(3n) {
@@ -35,12 +61,17 @@ body {
 }
 
 #reset {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    border: none;
+    border-radius: 35px;
+    background: #ff9400;
+    color: #08143a;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 650;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
-#game_info {
-    height: 30px;
+#reset:hover {
+    transform: translateY(-1px);
+    box-shadow: 0px 10px 20px rgba(255, 140, 0, 0.774);
 }

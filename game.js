@@ -44,7 +44,7 @@ function create_grid() {
     return {
         place(active_player, pos) {
             if (active_player instanceof player) {
-                if (grid[pos] == 0 && pos >= 0 && pos <= 8) {
+                if (grid[pos] == 0 && pos >= 0 && pos <= 8 && !won) {
                     grid[pos] = active_player.num;
                     for (const x of pos_to_line_match[pos]) {
                         totals[x] += active_player.num;

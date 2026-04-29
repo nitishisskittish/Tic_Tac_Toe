@@ -9,27 +9,29 @@ for (let x = 0; x < 9; x++) {
     const cell = document.createElement("div");
     cell.dataset.pos = x;
     const text = document.createElement("p");
-    text.textContent = x;
-    cell.append(text);
-    playing_grid.append(cell)
+    playing_grid.append(cell);
 }
+
+game_info.textContent = "It's Player 1's turn!"
 
 playing_grid.addEventListener("click", e => {
     const cell = e.target.closest("[data-pos]");
-    if (!cell) return;
+    if (!cell || grid.game_won()) return;
     const pos = parseInt(cell.dataset.pos);
     const active_player = grid.get_turn() == 1 ? player1 : player2;
+    game_info.textContent = `It's ${cell.style.backgroundColor = active_player == player1 ? player2.name : player1.name}'s turn!`;
     if (grid.place(active_player, pos)) {
-        cell.style.backgroundColor = active_player == player1 ? "green" : "blue";
+        cell.textContent = active_player == player1 ? "X" : "O";
+        cell.style.color = active_player == player1 ? "#334a97" : "#d1885e";
         if (grid.game_won() === true) {
             for (const cell of playing_grid.children) {
-                cell.style.backgroundColor = active_player == player1 ? "green" : "blue";
+                cell.style.backgroundColor = active_player == player1 ? "#c9dbf1" : "#fce9d0";
             }
             game_info.textContent = `${active_player == player1 ? player1.name : player2.name} wins!`;
         }
         else if (grid.game_won() === "tie") {
             for (const cell of playing_grid.children) {
-                cell.style.backgroundColor = "gray";
+                cell.style.backgroundColor = "#d3d3d4";
             }
             game_info.textContent = "It's a tie!";
         }
@@ -39,7 +41,9 @@ playing_grid.addEventListener("click", e => {
 document.getElementById("reset").addEventListener("click", e => {
     grid.reset();
     for (const cell of playing_grid.children) {
-        cell.style.backgroundColor = "white";
+        cell.textContent = "";
+        cell.style.backgroundColor = "white"
+        game_info.textContent = "It's Player 1's turn!"
     }
-    game_info.textContent = ""
+    game_info.textContent = "It's Player 1's turn!"
 })
