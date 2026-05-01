@@ -8,7 +8,6 @@ const game_info = document.getElementById("game_info")
 for (let x = 0; x < 9; x++) {
     const cell = document.createElement("div");
     cell.dataset.pos = x;
-    const text = document.createElement("p");
     playing_grid.append(cell);
 }
 
